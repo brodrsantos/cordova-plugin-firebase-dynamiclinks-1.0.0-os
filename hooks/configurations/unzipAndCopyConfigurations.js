@@ -6,7 +6,8 @@ var AdmZip = require("adm-zip");
 var utils = require("./utilities");
 
 var constants = {
-  googleServices: "google-services"
+  googleServices: "google-services",
+  folderNamePrefix: "firebase."
 };
 
 module.exports = function(context) {
@@ -31,9 +32,9 @@ module.exports = function(context) {
   var sourceFolderPath;
 
   if (cordovaAbove7) {
-    sourceFolderPath = path.join(context.opts.projectRoot, "www", constants.googleServices);
+    sourceFolderPath = path.join(context.opts.projectRoot, "www", constants.folderNamePrefix + appId);
   } else {
-    sourceFolderPath = path.join(wwwPath, constants.googleServices);
+    sourceFolderPath = path.join(wwwPath, constants.folderNamePrefix + appId);
   }
   
   var googleServicesZipFile = utils.getZipFile(sourceFolderPath, constants.googleServices);
@@ -48,19 +49,19 @@ module.exports = function(context) {
 
   var files = utils.getFilesFromPath(targetPath);
   if (!files) {
-    utils.handleError("No directory found", defer);
+    utils.handleError("No directory found");
   }
 
   var fileName = files.find(function (name) {
     return name.endsWith(platformConfig.firebaseFileExtension);
   });
   if (!fileName) {
-    utils.handleError("No file found", defer);
+    utils.handleError("No file found");
   }
 
   var sourceFilePath = path.join(targetPath, fileName);
   var destFilePath = path.join(context.opts.plugin.dir, fileName);
-  debugger
+
   utils.copyFromSourceToDestPath(defer, sourceFilePath, destFilePath);
 
   if (cordovaAbove7) {
