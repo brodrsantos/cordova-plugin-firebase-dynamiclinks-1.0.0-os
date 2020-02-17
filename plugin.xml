@@ -42,7 +42,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data android:host="$PAGE_LINK_DOMAIN" android:scheme="http"/>
                 <data android:host="$PAGE_LINK_DOMAIN" android:scheme="https"/>
