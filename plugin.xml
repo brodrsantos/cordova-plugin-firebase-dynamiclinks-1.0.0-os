@@ -22,6 +22,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <preference name="PAGE_LINK_DOMAIN" />
 
     <hook type="before_plugin_install" src="hooks/configurations/installDependencies.js" />
+    <hook type="before_plugin_install" src="hooks/configurations/unzipAndCopyConfigurations.js" />
 
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
